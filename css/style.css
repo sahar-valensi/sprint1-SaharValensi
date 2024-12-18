@@ -46,6 +46,12 @@ tr {
 td:hover {
     background-color: lightsalmon;
 }
+.btns-sizes{
+    margin: auto;
+}
+/* .hidden-cell {
+    opacity: 0;
+} */
 footer{
     margin: 50px;
     text-align: center;

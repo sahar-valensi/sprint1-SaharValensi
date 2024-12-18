@@ -28,7 +28,7 @@ function renderBoard(board) {
       const cell = gBoard[i][j]
       const className = `cell cell-${i}-${j}`
 
-      strHTML += `<td class="${className}" onClick="">
+      strHTML += `<td class="${className}" onClick="onCellClicked(this, ${i}, ${j})">
                 ${getRenderItem(cell)}
                 </td>`
     }

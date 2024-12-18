@@ -16,7 +16,8 @@ var gGame = {
     secsPassed: 0
 }
 
-function onInit() {
+function onInit(level = 4) {
+    // setLevel(level)
     console.log('game start')
     gBoard = buildBoard()
     setMinesNegsCount()
@@ -57,8 +58,8 @@ function buildBoard(board) {/////need to fix
         isMine: false,
         isMarked: true
     }
-    console.log(board)
-    console.table(board)
+    // console.log(board)
+    // console.table(board)
     return board
 }
 function setMinesNegsCount() {
@@ -68,10 +69,10 @@ function setMinesNegsCount() {
             if (!cell.isMine) {
                 cell.minesAroundCount = countMinesAround(i, j)
             }
-            console.log(cell)
-           
+            // console.log(cell)
         }
     }
+    renderBoard()
 }
 function countMinesAround(rowIdx, colIdx) {
     var negsCount = 0;
@@ -90,12 +91,14 @@ function countMinesAround(rowIdx, colIdx) {
             }
         }
     }
-    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
-  
+    console.log(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
     return negsCount;
 }
 
 function onCellClicked(elCell, i, j) {
+    if (gBoard[i][j].isShown) return
+    gGame.markedCount += gBoard[i][j].isMarked ? -1 : 1
+    console.log('gGame.markedCount:', gGame.markedCount)
 
 }
 function onCellMarked(elCell) {
@@ -107,75 +110,55 @@ function expandShown(board, elCell, i, j) {
 function checkGameOver() {
 
 }
-function countMinesAround(rowIdx, colIdx) {
-    var negsCount = 0;
+function setLevel(level){
 
-
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        if (i === -1) continue
-        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-            if (j === -1) continue
-            if (i === rowIdx && j === colIdx) continue;
-            console.log('i', i, 'j', j)
-
-
-            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
-
-                if (gBoard[i][j].isMine) {
-                    negsCount++;
-                }
-            }
-        }
-    }
-    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
-
-    return negsCount;
 }
-function countMinesAround(rowIdx, colIdx) {
-    var negsCount = 0;
+// function countMinesAround(rowIdx, colIdx) {
+//     var negsCount = 0;
 
 
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        if (i === -1) continue
-        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-            if (j === -1) continue
-            if (i === rowIdx && j === colIdx) continue;
-            console.log('i', i, 'j', j)
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         if (i === -1) continue
+//         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//             if (j === -1) continue
+//             if (i === rowIdx && j === colIdx) continue;
+//             console.log('i', i, 'j', j)
 
 
-            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+//             if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
 
-                if (gBoard[i][j].isMine) {
-                    negsCount++;
-                }
-            }
-        }
-    }
-    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
+//                 if (gBoard[i][j].isMine) {
+//                     negsCount++;
+//                 }
+//             }
+//         }
+//     }
+//     console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
 
-    return negsCount;
-}
-function countMinesAround(rowIdx, colIdx) {
-    var negsCount = 0;
+//     return negsCount;
+// }
 
-
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        if (i === -1) continue
-        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-            if (j === -1) continue
-            if (i === rowIdx && j === colIdx) continue;
-            console.log('i', i, 'j', j)
+// function countMinesAround(rowIdx, colIdx) {
+//     var negsCount = 0;
 
 
-            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         if (i === -1) continue
+//         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//             if (j === -1) continue
+//             if (i === rowIdx && j === colIdx) continue;
+//             console.log('i', i, 'j', j)
 
-                if (gBoard[i][j].isMine) {
-                    negsCount++;
-                }
-            }
-        }
-    }
-    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
 
-    return negsCount;
-}
+//             if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+
+//                 if (gBoard[i][j].isMine) {
+//                     negsCount++;
+//                 }
+//             }
+//         }
+//     }
+//     console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
+
+//     return negsCount;
+// }
