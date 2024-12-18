@@ -44,14 +44,18 @@ function buildBoard(board) {/////need to fix
         isShown: false,
         isMine: true,
         isMarked: false,
-        renderItem: BOMB
     }
     board[2][3] = {
         minesAroundCount: 0,
         isShown: false,
         isMine: true,
         isMarked: false,
-        renderItem: BOMB
+    }
+    board[3][0] = {
+        minesAroundCount: 0,
+        isShown: false,
+        isMine: false,
+        isMarked: true
     }
     console.log(board)
     console.table(board)
@@ -65,28 +69,32 @@ function setMinesNegsCount() {
                 cell.minesAroundCount = countMinesAround(i, j)
             }
             console.log(cell)
+           
         }
     }
 }
-// function countMinesAround(rowIdx, colIdx) {
-//     console.log('selected cell : ',rowIdx,colIdx)
+function countMinesAround(rowIdx, colIdx) {
+    var negsCount = 0;
 
-//     var negsCount = 0
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i === -1) continue
 
-//     for (var i = rowIdx - 1; i < rowIdx + 1; i++) {
-//         if (i === -1) continue
-//         for (var j = colIdx - 1; j < colIdx + 1; j++) {
-//             if (j === -1) continue
-//             var cell = gBoard[i][j]
-//             console.log('i', i ,'j',j)
-//             if (i === rowIdx && j === colIdx) continue
-//             if (i < 0 || i >= gBoard.length || j < 0 || j >= gBoard.length) continue
-//             if (cell.isMine) negsCount++
-//         }
-//     }
-//     console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
-//     return negsCount
-// }
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j === -1) continue
+            if (i === rowIdx && j === colIdx) continue;
+            console.log('i', i, 'j', j)
+            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+                if (gBoard[i][j].isMine) {
+                    negsCount++;
+                }
+            }
+        }
+    }
+    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
+  
+    return negsCount;
+}
+
 function onCellClicked(elCell, i, j) {
 
 }
@@ -109,7 +117,55 @@ function countMinesAround(rowIdx, colIdx) {
             if (j === -1) continue
             if (i === rowIdx && j === colIdx) continue;
             console.log('i', i, 'j', j)
-            
+
+
+            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+
+                if (gBoard[i][j].isMine) {
+                    negsCount++;
+                }
+            }
+        }
+    }
+    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
+
+    return negsCount;
+}
+function countMinesAround(rowIdx, colIdx) {
+    var negsCount = 0;
+
+
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i === -1) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j === -1) continue
+            if (i === rowIdx && j === colIdx) continue;
+            console.log('i', i, 'j', j)
+
+
+            if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
+
+                if (gBoard[i][j].isMine) {
+                    negsCount++;
+                }
+            }
+        }
+    }
+    console.table(`'cell [${rowIdx},${colIdx}] has ${negsCount} negs'`)
+
+    return negsCount;
+}
+function countMinesAround(rowIdx, colIdx) {
+    var negsCount = 0;
+
+
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i === -1) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j === -1) continue
+            if (i === rowIdx && j === colIdx) continue;
+            console.log('i', i, 'j', j)
+
 
             if (i >= 0 && i < gBoard.length && j >= 0 && j < gBoard[0].length) {
 

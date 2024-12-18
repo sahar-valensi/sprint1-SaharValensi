@@ -28,9 +28,9 @@ function renderBoard(board) {
       const cell = gBoard[i][j]
       const className = `cell cell-${i}-${j}`
 
-      strHTML += `<td class="${className}" onClick="">${cell.renderItem}</td>`
-    //  ${cell}
-      
+      strHTML += `<td class="${className}" onClick="">
+                ${getRenderItem(cell)}
+                </td>`
     }
     strHTML += '</tr>'
   }
@@ -45,21 +45,20 @@ function renderBoard(board) {
 
 
 
-function renderCell(location, value) {
+function getRenderItem(cell) {
 
-  const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
-  elCell.innerHTML = value
+  var renderItem = ''
+  if (cell.isMark) {
+    renderItem = FLAG
+  } else if (cell.isMine) {
+    renderItem = BOMB
+  } else if (cell.isShown) {
+    renderItem = cell.minesAroundCount
+  } else {
+    renderItem = EMPTY
+  }
+return renderItem
 }
-// function getMoveDiff() {
-//   const randNum = getRandomIntInclusive(1, 4)
-
-//   switch (randNum) {
-//       case 1: return { i: 0, j: 1 }
-//       case 2: return { i: 1, j: 0 }
-//       case 3: return { i: 0, j: -1 }
-//       case 4: return { i: -1, j: 0 }
-//   }
-// }
 
 function openModal(msg) {
   const elModal = document.querySelector('')

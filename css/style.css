@@ -46,3 +46,8 @@ tr {
 td:hover {
     background-color: lightsalmon;
 }
+footer{
+    margin: 50px;
+    text-align: center;
+    background-color: #95e3f0;
+}
