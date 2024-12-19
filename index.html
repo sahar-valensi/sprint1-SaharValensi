@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Sprint1 Sahar Valensi</title>
 </head>
 
 <body onload="onInit()">
-    <H2>
-        <p>I'm gonna wish you a good luck,you studied hard and this is your time to shine. think stright and follow the
-            rules
-            and enjoy the way!</p>
-    </H2>
+    <h1>MINES SWEEPER</h1>
+
+    <div>
+        <button class="reset-btn">😀</button>
+    </div>
     <div class="board-container">
     </div>
-    <div class="btns-sizes">
-        <button class="4">4X4</button>
-        <button class="8">8X8</button>
-        <button class="12">12X12</button>
+    <div class="btns-leves">
+        <button onclick="onSetLevel(this,4,2)">4X4</button>
+        <button onclick="onSetLevel(this,8,14)">8X8</button>
+        <button onclick="onSetLevel(this,12,32)">12X12</button>
     </div>
+    <div class="modal">End game</div>
 
 
 
